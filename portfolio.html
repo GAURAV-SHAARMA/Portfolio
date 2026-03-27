@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gaurav Sharma — CS Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0" rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 244, 254, .18) #0c0e11
+        }
+
+        body {
+            background: #0c0e11;
+            color: #f9f9fd;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 244, 254, .2);
+            border-radius: 3px
+        }
+
+        ::selection {
+            background: rgba(0, 244, 254, .18);
+            color: #00f4fe
+        }
+
+        .mi {
+            font-family: 'Material Symbols Outlined';
+            font-style: normal;
+            font-weight: 400;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            line-height: 1;
+            display: inline-block;
+            vertical-align: middle;
+            user-select: none
+        }
+
+        .dot-grid {
+            background-image: radial-gradient(circle at 1.5px 1.5px, rgba(0, 244, 254, .045) 1px, transparent 0);
+            background-size: 38px 38px
+        }
+
+        .card {
+            background: rgba(17, 20, 23, .82);
+            border: 1px solid rgba(70, 72, 75, .55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 14px;
+            transition: border-color .3s, box-shadow .3s, transform .3s
+        }
+
+        .card:hover {
+            border-color: rgba(0, 244, 254, .18);
+            box-shadow: 0 18px 52px rgba(0, 244, 254, .07)
+        }
+
+        .card-lift:hover {
+            transform: translateY(-5px)
+        }
+
+        .g-cyan {
+            background: linear-gradient(130deg, #a1faff, #00f4fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text
+        }
+
+        .btn-cyan {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #a1faff, #00f4fe);
+            color: #004346;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 8px;
+            padding: 13px 28px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: filter .2s, transform .15s, box-shadow .2s;
+            white-space: nowrap
+        }
+
+        .btn-cyan:hover {
+            filter: brightness(1.08);
+            box-shadow: 0 0 22px rgba(0, 244, 254, .35)
+        }
+
+        .btn-cyan:active {
+            transform: scale(.97)
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: #f9f9fd;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            border: 1px solid rgba(70, 72, 75, .7);
+            border-radius: 8px;
+            padding: 12px 28px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color .2s, color .2s, background .2s;
+            white-space: nowrap
+        }
+
+        .btn-ghost:hover {
+            border-color: #00f4fe;
+            color: #00f4fe;
+            background: rgba(0, 244, 254, .04)
+        }
+
+        #nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            height: 64px;
+            background: rgba(12, 14, 17, .82);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border-bottom: 1px solid rgba(70, 72, 75, .3);
+            transition: background .3s
+        }
+
+        #nav.scrolled {
+            background: rgba(12, 14, 17, .97)
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 28px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none
+        }
+
+        .nav-badge {
+            background: linear-gradient(135deg, #a1faff, #00f4fe);
+            color: #004346;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 900;
+            font-size: 13px;
+            padding: 4px 9px;
+            border-radius: 6px
+        }
+
+        .nav-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #f9f9fd
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px
+        }
+
+        .nav-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: rgba(249, 249, 253, .5);
+            position: relative;
+            transition: color .2s;
+            padding-bottom: 2px
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 100%;
+            height: 2px;
+            background: #00f4fe;
+            border-radius: 2px;
+            transition: right .25s ease
+        }
+
+        .nav-link:hover {
+            color: #00f4fe
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            right: 0
+        }
+
+        .nav-link.active {
+            color: #00f4fe
+        }
+
+        .ham {
+            display: none;
+            background: none;
+            border: 1px solid rgba(70, 72, 75, .6);
+            border-radius: 8px;
+            padding: 7px;
+            cursor: pointer;
+            color: rgba(249, 249, 253, .7);
+            transition: border-color .2s, color .2s;
+            align-items: center;
+            justify-content: center
+        }
+
+        .ham:hover {
+            border-color: #00f4fe;
+            color: #00f4fe
+        }
+
+        #mob-menu {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: rgba(12, 14, 17, .98);
+            border-bottom: 1px solid rgba(70, 72, 75, .3);
+            z-index: 199;
+            padding: 20px 28px 28px;
+            flex-direction: column;
+            gap: 4px;
+            backdrop-filter: blur(20px)
+        }
+
+        #mob-menu.open {
+            display: flex
+        }
+
+        .mob-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: rgba(249, 249, 253, .6);
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(70, 72, 75, .2);
+            transition: color .2s
+        }
+
+        .mob-link:last-of-type {
+            border-bottom: none
+        }
+
+        .mob-link:hover {
+            color: #00f4fe
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 64px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(110px);
+            pointer-events: none;
+            z-index: 0
+        }
+
+        .sec-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: #3fff8b;
+            display: block;
+            margin-bottom: 10px
+        }
+
+        .term-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 14px;
+            background: rgba(29, 32, 36, .9);
+            border-bottom: 1px solid rgba(70, 72, 75, .25)
+        }
+
+        .dot2 {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(35, 38, 42, .9);
+            border: 1px solid rgba(70, 72, 75, .4);
+            color: #aaabaf;
+            font-size: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            padding: 3px 9px;
+            border-radius: 4px
+        }
+
+        .tag-c {
+            border-color: rgba(0, 244, 254, .2);
+            color: #a1faff;
+            background: rgba(0, 244, 254, .06)
+        }
+
+        .tag-g {
+            border-color: rgba(63, 255, 139, .2);
+            color: #3fff8b;
+            background: rgba(63, 255, 139, .06)
+        }
+
+        .tag-b {
+            border-color: rgba(100, 179, 255, .2);
+            color: #64b3ff;
+            background: rgba(100, 179, 255, .06)
+        }
+
+        .tag-r {
+            border-color: rgba(255, 113, 108, .2);
+            color: #ff716c;
+            background: rgba(255, 113, 108, .06)
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(63, 255, 139, .08);
+            border: 1px solid rgba(63, 255, 139, .25);
+            color: #3fff8b;
+            font-size: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px
+        }
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #3fff8b;
+            animation: livepulse 2s infinite
+        }
+
+        @keyframes livepulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(63, 255, 139, .4)
+            }
+
+            50% {
+                opacity: .7;
+                box-shadow: 0 0 0 5px rgba(63, 255, 139, 0)
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0
+            }
+        }
+
+        .cursor {
+            animation: blink 1.1s step-start infinite
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .fu {
+            animation: fadeUp .65s ease forwards;
+            opacity: 0
+        }
+
+        .d1 {
+            animation-delay: .08s
+        }
+
+        .d2 {
+            animation-delay: .2s
+        }
+
+        .d3 {
+            animation-delay: .34s
+        }
+
+        .d4 {
+            animation-delay: .48s
+        }
+
+        .d5 {
+            animation-delay: .62s
+        }
+
+        @keyframes scrollB {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: .35
+            }
+
+            50% {
+                transform: translateY(7px);
+                opacity: .8
+            }
+        }
+
+        .scr {
+            animation: scrollB 2s ease-in-out infinite
+        }
+
+        @keyframes statP {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px rgba(0, 244, 254, .3)
+            }
+
+            50% {
+                text-shadow: 0 0 24px rgba(0, 244, 254, .65)
+            }
+        }
+
+        .sn {
+            animation: statP 3s ease-in-out infinite
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(161, 250, 255, .15), transparent)
+        }
+
+        .inp {
+            width: 100%;
+            background: rgba(0, 0, 0, .4);
+            border: 1px solid rgba(70, 72, 75, .5);
+            color: #f9f9fd;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            padding: 12px 16px;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color .2s
+        }
+
+        .inp:focus {
+            border-color: rgba(0, 244, 254, .5)
+        }
+
+        .inp::placeholder {
+            color: rgba(116, 117, 121, .6)
+        }
+
+        .ibox {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0
+        }
+
+        .soc-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 7px;
+            padding: 14px 8px;
+            border-radius: 10px;
+            border: 1px solid rgba(70, 72, 75, .35);
+            text-decoration: none;
+            background: rgba(23, 26, 29, .5);
+            transition: border-color .2s, background .2s
+        }
+
+        @media(max-width:900px) {
+
+            .nav-links,
+            .nav-resume {
+                display: none !important
+            }
+
+            .ham {
+                display: flex !important
+            }
+
+            .hero-g {
+                grid-template-columns: 1fr !important
+            }
+
+            .term-col {
+                display: none !important
+            }
+
+            .about-g {
+                grid-template-columns: 1fr !important
+            }
+
+            .contact-g {
+                grid-template-columns: 1fr !important
+            }
+        }
+
+        @media(max-width:640px) {
+            .stats-g {
+                grid-template-columns: 1fr 1fr !important
+            }
+
+            .proj-g {
+                grid-template-columns: 1fr !important
+            }
+
+            .feat {
+                grid-column: span 1 !important
+            }
+
+            .feat-inner {
+                grid-template-columns: 1fr !important
+            }
+
+            .tech-g {
+                grid-template-columns: 1fr 1fr !important
+            }
+
+            .form-row {
+                grid-template-columns: 1fr !important
+            }
+
+            .soc-g {
+                grid-template-columns: repeat(3, 1fr) !important
+            }
+        }
+        .reveal {
+    opacity: 0;
+    transform: translateY(100px); /* more distance = more visible */
+    transition: all 1.6s cubic-bezier(0.22, 1, 0.36, 1); /* slower & smooth */
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional left/right slow animations */
+.reveal-left {
+    transform: translateX(-120px);
+}
+.reveal-right {
+    transform: translateX(120px);
+}
+
+.reveal-left.active,
+.reveal-right.active {
+    transform: translateX(0);
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <div class="nav-inner">
+            <a href="#home" class="nav-logo">
+                <span class="nav-badge">GS</span>
+                <span class="nav-name">Gaurav Sharma</span>
+            </a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active" data-sec="home">Home</a>
+                <a href="#about" class="nav-link" data-sec="about">About</a>
+                <a href="#projects" class="nav-link" data-sec="projects">Projects</a>
+                <a href="#contact" class="nav-link" data-sec="contact">Contact</a>
+            </div>
+            <a href="resume-Portfolio.pdf" download class="btn-cyan nav-resume"
+                style="padding:9px 20px;font-size:10px;display:inline-flex;align-items:center;text-decoration:none;">
+
+                <span class="mi" style="font-size:15px;margin-right:5px;">description</span>
+                Resume
+            </a>
+            <button class="ham" id="ham" onclick="toggleMob()">
+                <span class="mi" id="ham-ic">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mob-menu">
+        <a href="#home" class="mob-link" onclick="closeMob()">Home</a>
+        <a href="#about" class="mob-link" onclick="closeMob()">About</a>
+        <a href="#projects" class="mob-link" onclick="closeMob()">Projects</a>
+        <a href="#contact" class="mob-link" onclick="closeMob()">Contact</a>
+        <a href="https://drive.google.com/uc?export=download&confirm=t&id=1XZIZjEFUKWKdzmemJeV-zAKfMZZJOYnT"
+            class="btn-cyan"
+            style="margin-top:14px;justify-content:center;display:inline-flex;align-items:center;text-decoration:none;">
+
+            <span class="mi" style="font-size:15px;margin-right:6px;">description</span>
+            Download Resume
+        </a>
+    </div>
+
+    <!-- HERO -->
+    <section id="home" class="hero dot-grid reveal">
+        <div class="blob" style="width:520px;height:520px;background:rgba(0,244,254,.04);top:-60px;left:-100px"></div>
+        <div class="blob" style="width:400px;height:400px;background:rgba(63,255,139,.03);bottom:40px;right:-80px">
+        </div>
+        <div style="max-width:1200px;margin:0 auto;padding:60px 28px 110px;width:100%;position:relative;z-index:1">
+            <div class="hero-g" style="display:grid;grid-template-columns:1fr 440px;gap:56px;align-items:center">
+
+                <div style="display:flex;flex-direction:column;gap:26px">
+                    <div class="fu d1"
+                        style="display:inline-flex;align-items:center;gap:8px;background:rgba(63,255,139,.07);border:1px solid rgba(63,255,139,.22);border-radius:30px;padding:6px 14px;width:fit-content">
+                        <span
+                            style="width:7px;height:7px;border-radius:50%;background:#3fff8b;animation:livepulse 2s infinite;display:block"></span>
+                        <span
+                            style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#3fff8b">Available
+                            for Opportunities</span>
+                    </div>
+                    <div class="fu d2">
+                        <p
+                            style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(170,171,175,.5);margin-bottom:14px">
+                            CSE @ Chandigarh University · Class of 2025</p>
+                        <h1
+                            style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(44px,6vw,78px);line-height:.9;letter-spacing:-.03em">
+                            BUILDING<br /><span class="g-cyan">SCALABLE</span><br />SYSTEMS.</h1>
+                    </div>
+                    <p class="fu d3"
+                        style="color:rgba(170,171,175,.78);font-size:14px;line-height:1.78;max-width:480px;font-weight:300">
+                       Full-stack developer focused on building scalable web applications, responsive user interfaces, and robust backend systems. Turning real-world problems into efficient, production-ready solutions.</p>
+                    <div class="fu d4" style="display:flex;flex-wrap:wrap;gap:12px">
+                        <a href="#projects" class="btn-cyan">View Projects <span class="mi"
+                                style="font-size:16px">arrow_forward</span></a>
+                        <a href="#contact" class="btn-ghost">Get in Touch</a>
+                    </div>
+                    <div class="fu d5" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+                        <a href="https://github.com/GAURAV-SHAARMA" target="_blank" rel="noopener noreferrer"
+                            style="display:flex;align-items:center;gap:7px;text-decoration:none;color:rgba(170,171,175,.6);font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:color .2s"
+                            onmouseover="this.style.color='#a1faff'"
+                            onmouseout="this.style.color='rgba(170,171,175,.6)'"><span class="mi"
+                                style="font-size:17px">code</span>GitHub</a>
+                        <a href="https://www.linkedin.com/in/work-gaurav-sharma/" target="_blank"
+                            rel="noopener noreferrer"
+                            style="display:flex;align-items:center;gap:7px;text-decoration:none;color:rgba(170,171,175,.6);font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:color .2s"
+                            onmouseover="this.style.color='#64b3ff'"
+                            onmouseout="this.style.color='rgba(170,171,175,.6)'"><span class="mi"
+                                style="font-size:17px">hub</span>LinkedIn</a>
+                        <a href="https://leetcode.com/u/GauravSharma1919/" target="_blank" rel="noopener noreferrer"
+                            style="display:flex;align-items:center;gap:7px;text-decoration:none;color:rgba(170,171,175,.6);font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:color .2s"
+                            onmouseover="this.style.color='#3fff8b'"
+                            onmouseout="this.style.color='rgba(170,171,175,.6)'"><span class="mi"
+                                style="font-size:17px">terminal</span>LeetCode</a>
+                    </div>
+                </div>
+
+                <div class="term-col fu d3" style="position:relative">
+                    <div class="card" style="overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.5)">
+                        <div class="term-bar">
+                            <span class="dot2" style="background:rgba(255,113,108,.5)"></span>
+                            <span class="dot2" style="background:rgba(63,255,139,.5)"></span>
+                            <span class="dot2" style="background:rgba(161,250,255,.5)"></span>
+                            <span
+                                style="margin-left:auto;font-size:10px;color:rgba(170,171,175,.35);letter-spacing:.12em;text-transform:uppercase">profile.sys</span>
+                        </div>
+                        <div style="padding:22px 22px 26px;font-size:12px;line-height:1.85;color:rgba(170,171,175,.75)">
+                            <div><span style="color:#3fff8b">$</span> <span
+                                    style="color:rgba(170,171,175,.45)">whoami</span></div>
+                            <div style="padding-left:16px;color:#a1faff;margin-bottom:10px">Gaurav Sharma — Backend
+                                Engineer</div>
+                            <div><span style="color:#3fff8b">$</span> <span style="color:rgba(170,171,175,.45)">cat
+                                    ./stack.json</span></div>
+                            <div style="padding-left:16px;color:rgba(170,171,175,.5)">{</div>
+                            <div style="padding-left:32px"><span style="color:#64b3ff">"languages"</span>: <span
+                                    style="color:#3fff8b">["C++","Java","JS"]</span>,</div>
+                            <div style="padding-left:32px"><span style="color:#64b3ff">"backend"</span>: <span
+                                    style="color:#3fff8b">["FastAPI","Node.js","REST"]</span>,</div>
+                            <div style="padding-left:32px"><span style="color:#64b3ff">"frontend"</span>: <span
+                                    style="color:#3fff8b">["React","Next.js","Vite"]</span>,</div>
+                            <div style="padding-left:32px"><span style="color:#64b3ff">"db"</span>: <span
+                                    style="color:#3fff8b">["MySQL","SQLite"]</span></div>
+                            <div style="padding-left:16px;color:rgba(170,171,175,.5);margin-bottom:10px">}</div>
+                            <div><span style="color:#3fff8b">$</span> <span style="color:rgba(170,171,175,.45)">status
+                                    --check</span></div>
+                            <div style="padding-left:16px"><span style="color:#3fff8b">✓</span> CGPA: <span
+                                    style="color:#f9f9fd">8.20 / 10.0</span></div>
+                            <div style="padding-left:16px"><span style="color:#3fff8b">✓</span> Location: <span
+                                    style="color:#f9f9fd">Chandigarh, India</span></div>
+                            <div style="padding-left:16px"><span style="color:#3fff8b">✓</span> Seeking: <span
+                                    style="color:#f9f9fd">SDE / Backend Roles</span></div>
+                            <div style="margin-top:10px"><span style="color:#3fff8b">$</span> <span class="cursor"
+                                    style="color:#a1faff">█</span></div>
+                        </div>
+                    </div>
+                    <div
+                        style="position:absolute;z-index:-1;top:50%;left:50%;transform:translate(-50%,-50%);width:130%;height:130%;background:rgba(0,244,254,.04);border-radius:50%;filter:blur(70px);pointer-events:none">
+                    </div>
+                </div>
+
+            </div>
+            <div class="scr"
+                style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px">
+                <span
+                    style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(170,171,175,.3)">Scroll</span>
+                <span class="mi" style="color:rgba(170,171,175,.3);font-size:18px">keyboard_arrow_down</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div
+        style="border-top:1px solid rgba(70,72,75,.3);border-bottom:1px solid rgba(70,72,75,.3);background:rgba(17,20,23,.6);padding:28px 0">
+        <div style="max-width:1200px;margin:0 auto;padding:0 28px">
+            <div class="stats-g" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center">
+                <div style="padding:16px 8px">
+                    <div class="sn"
+                        style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:36px;color:#a1faff;letter-spacing:-.02em">
+                        8.20</div>
+                    <div
+                        style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(170,171,175,.45);margin-top:4px">
+                        CGPA</div>
+                </div>
+                <div style="padding:16px 8px">
+                    <div class="sn"
+                        style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:36px;color:#3fff8b;letter-spacing:-.02em">
+                        70+</div>
+                    <div
+                        style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(170,171,175,.45);margin-top:4px">
+                        GitHub Repos</div>
+                </div>
+                <div style="padding:16px 8px">
+                    <div class="sn"
+                        style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:36px;color:#a1faff;letter-spacing:-.02em">
+                        4+</div>
+                    <div
+                        style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(170,171,175,.45);margin-top:4px">
+                        Full-Stack Apps</div>
+                </div>
+                <div style="padding:16px 8px">
+                    <div class="sn"
+                        style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:36px;color:#3fff8b;letter-spacing:-.02em">
+                        6+</div>
+                    <div
+                        style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(170,171,175,.45);margin-top:4px">
+                        Certifications</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal reveal-left" style="padding:100px 0">
+        <div style="max-width:1200px;margin:0 auto;padding:0 28px">
+            <div style="margin-bottom:56px">
+                <span class="sec-label">Phase 01 — Identity</span>
+                <h2
+                    style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(32px,4vw,52px);letter-spacing:-.03em;line-height:.95">
+                    ABOUT.EXE</h2>
+            </div>
+            <div class="about-g" style="display:grid;grid-template-columns:1fr 380px;gap:22px">
+
+                <div class="card" style="padding:36px 40px">
+                    <h3
+                        style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;margin-bottom:20px">
+                        The Genesis</h3>
+                    <div
+                        style="display:flex;flex-direction:column;gap:16px;color:rgba(170,171,175,.8);font-size:13px;line-height:1.8">
+                        <p>Driven by the belief that <span style="color:#a1faff;font-weight:500">"Code is
+                                Infrastructure,"</span> I started engineering systems that work efficiently under
+                            real-world constraints. Currently pursuing my B.E. in CSE at Chandigarh University (Class of
+                            2025).</p>
+                        <p>My work spans REST API development with FastAPI, AI model evaluation pipelines, full-stack
+                            React/Next.js applications, and backend system design — with a growing focus on how ML
+                            systems are benchmarked and deployed.</p>
+                        <p>Beyond code, I serve as Class Representative and contribute to peer development at the
+                            Kala-Connect Club, applying structured thinking to leadership and team dynamics.</p>
+                    </div>
+                    <div style="margin-top:32px;padding-top:28px;border-top:1px solid rgba(70,72,75,.35)">
+                        <p
+                            style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#3fff8b;margin-bottom:22px">
+                            Academic Path</p>
+                        <div style="display:flex;flex-direction:column;gap:20px">
+                            <div style="display:flex;gap:16px;align-items:flex-start">
+                                <div
+                                    style="width:10px;height:10px;border-radius:50%;background:#a1faff;margin-top:4px;flex-shrink:0;box-shadow:0 0 8px rgba(161,250,255,.4)">
+                                </div>
+                                <div>
+                                    <div
+                                        style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(63,255,139,.6);margin-bottom:3px">
+                                        2023 — Present</div>
+                                    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px">
+                                        B.E. Computer Science Engineering</div>
+                                    <div style="font-size:12px;color:rgba(170,171,175,.55);margin-top:2px">Chandigarh
+                                        University · CGPA 8.20/10.0</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:16px;align-items:flex-start">
+                                <div
+                                    style="width:10px;height:10px;border-radius:50%;background:rgba(70,72,75,.8);margin-top:4px;flex-shrink:0">
+                                </div>
+                                <div>
+                                    <div
+                                        style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(170,171,175,.38);margin-bottom:3px">
+                                        2023</div>
+                                    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px">
+                                        Senior Secondary (XII)</div>
+                                    <div style="font-size:12px;color:rgba(170,171,175,.55);margin-top:2px">Rath
+                                        International School · 75%</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:16px;align-items:flex-start">
+                                <div
+                                    style="width:10px;height:10px;border-radius:50%;background:rgba(70,72,75,.8);margin-top:4px;flex-shrink:0">
+                                </div>
+                                <div>
+                                    <div
+                                        style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(170,171,175,.38);margin-bottom:3px">
+                                        2021</div>
+                                    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px">
+                                        Secondary (X)</div>
+                                    <div style="font-size:12px;color:rgba(170,171,175,.55);margin-top:2px">Paradise Sr.
+                                        Sec. School · 98%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:18px">
+                    <div class="card" style="padding:28px">
+                        <p
+                            style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#3fff8b;margin-bottom:20px">
+                            Tech Stack</p>
+                        <div class="tech-g" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+                            <div>
+                                <p
+                                    style="font-size:10px;color:rgba(170,171,175,.4);text-transform:uppercase;letter-spacing:.15em;margin-bottom:8px">
+                                    Languages</p>
+                                <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="tag tag-g">C++</span><span
+                                        class="tag tag-g">Java</span><span class="tag tag-g">JS</span></div>
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size:10px;color:rgba(170,171,175,.4);text-transform:uppercase;letter-spacing:.15em;margin-bottom:8px">
+                                    Backend</p>
+                                <div style="display:flex;flex-wrap:wrap;gap:6px"><span
+                                        class="tag tag-c">FastAPI</span><span class="tag tag-c">Node.js</span></div>
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size:10px;color:rgba(170,171,175,.4);text-transform:uppercase;letter-spacing:.15em;margin-bottom:8px">
+                                    Frontend</p>
+                                <div style="display:flex;flex-wrap:wrap;gap:6px"><span
+                                        class="tag tag-b">React</span><span class="tag tag-b">Next.js</span><span
+                                        class="tag tag-b">Vite</span></div>
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size:10px;color:rgba(170,171,175,.4);text-transform:uppercase;letter-spacing:.15em;margin-bottom:8px">
+                                    Database</p>
+                                <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="tag">MySQL</span><span
+                                        class="tag">SQLite</span></div>
+                            </div>
+                            <div style="grid-column:span 2">
+                                <p
+                                    style="font-size:10px;color:rgba(170,171,175,.4);text-transform:uppercase;letter-spacing:.15em;margin-bottom:8px">
+                                    Tools</p>
+                                <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="tag">Git</span><span
+                                        class="tag">Postman</span><span class="tag">VS Code</span><span
+                                        class="tag">Excel</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="padding:28px">
+                        <p
+                            style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#3fff8b;margin-bottom:20px">
+                            Certifications</p>
+                        <div style="display:flex;flex-direction:column;gap:16px">
+                            <div style="display:flex;gap:14px;align-items:flex-start">
+                                <div class="ibox"
+                                    style="background:rgba(0,244,254,.07);border:1px solid rgba(0,244,254,.15)"><span
+                                        class="mi" style="color:#a1faff;font-size:18px">verified</span></div>
+                                <div>
+                                    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px">
+                                        Career Essentials in Generative AI</div>
+                                    <div style="font-size:11px;color:rgba(170,171,175,.5);margin-top:2px">Microsoft ·
+                                        April 2024</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:14px;align-items:flex-start">
+                                <div class="ibox"
+                                    style="background:rgba(63,255,139,.07);border:1px solid rgba(63,255,139,.15)"><span
+                                        class="mi" style="color:#3fff8b;font-size:18px">verified</span></div>
+                                <div>
+                                    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px">
+                                        Certificate in Coding</div>
+                                    <div style="font-size:11px;color:rgba(170,171,175,.5);margin-top:2px">July 2024
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+                        <a href="https://github.com/GAURAV-SHAARMA" target="_blank" rel="noopener noreferrer"
+                            class="soc-btn"
+                            onmouseover="this.style.borderColor='rgba(0,244,254,.3)';this.style.background='rgba(0,244,254,.05)'"
+                            onmouseout="this.style.borderColor='rgba(70,72,75,.35)';this.style.background='rgba(23,26,29,.5)'"><span
+                                class="mi" style="color:#a1faff;font-size:20px">code</span><span
+                                style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(170,171,175,.55)">GitHub</span></a>
+                        <a href="https://www.linkedin.com/in/work-gaurav-sharma/" target="_blank"
+                            rel="noopener noreferrer" class="soc-btn"
+                            onmouseover="this.style.borderColor='rgba(100,179,255,.3)';this.style.background='rgba(100,179,255,.05)'"
+                            onmouseout="this.style.borderColor='rgba(70,72,75,.35)';this.style.background='rgba(23,26,29,.5)'"><span
+                                class="mi" style="color:#64b3ff;font-size:20px">hub</span><span
+                                style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(170,171,175,.55)">LinkedIn</span></a>
+                        <a href="https://leetcode.com/u/GauravSharma1919/" target="_blank" rel="noopener noreferrer"
+                            class="soc-btn"
+                            onmouseover="this.style.borderColor='rgba(63,255,139,.3)';this.style.background='rgba(63,255,139,.05)'"
+                            onmouseout="this.style.borderColor='rgba(70,72,75,.35)';this.style.background='rgba(23,26,29,.5)'"><span
+                                class="mi" style="color:#3fff8b;font-size:20px">terminal</span><span
+                                style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(170,171,175,.55)">LeetCode</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider" style="max-width:1200px;margin:0 auto;padding:0 18px"></div>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal reveal-right" style="padding:80px 0">
+        <div style="max-width:1200px;margin:0 auto;padding:0 28px">
+            <div
+                style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:16px">
+                <div><span class="sec-label">Phase 02 — Laboratory</span>
+                    <h2
+                        style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(32px,4vw,52px);letter-spacing:-.03em;line-height:.95">
+                        SELECTED<br />ARTIFACTS.</h2>
+                </div>
+                <a href="https://github.com/GAURAV-SHAARMA" target="_blank" rel="noopener noreferrer"
+                    style="display:flex;align-items:center;gap:6px;text-decoration:none;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(170,171,175,.45);transition:color .2s"
+                    onmouseover="this.style.color='#a1faff'" onmouseout="this.style.color='rgba(170,171,175,.45)'">All
+                    on GitHub <span class="mi" style="font-size:15px">north_east</span></a>
+            </div>
+
+            <div class="proj-g" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+
+                <!-- 1. PULSEBOARD — featured full width -->
+                <article class="card card-lift feat" style="grid-column:span 2">
+                    <div class="feat-inner"
+                        style="display:grid;grid-template-columns:1fr 1fr;min-height:300px;overflow:hidden;border-radius:14px">
+                        <div style="padding:36px 40px;display:flex;flex-direction:column;gap:18px">
+                            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                                <span class="live-badge"><span class="live-dot"></span>Live on Vercel</span>
+                                <span class="tag tag-c">Featured</span>
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#3fff8b;margin-bottom:8px">
+                                    Next.js · TypeScript · Dashboard</p>
+                                <h3
+                                    style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(26px,3vw,36px);letter-spacing:-.02em">
+                                    PULSEBOARD</h3>
+                            </div>
+                            <p style="font-size:13px;line-height:1.75;color:rgba(170,171,175,.75)">A full-featured
+                                analytics dashboard built with Next.js 14 and TypeScript. Production-grade architecture
+                                with modular components, responsive layouts, and data visualizations — deployed live on
+                                Vercel.</p>
+                            <div style="display:flex;flex-wrap:wrap;gap:7px"><span class="tag tag-c">Next.js
+                                    14</span><span class="tag tag-g">TypeScript</span><span
+                                    class="tag tag-b">React</span><span class="tag">CSS Modules</span><span
+                                    class="tag">Vercel</span></div>
+                            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px">
+                                <a href="https://pulseboard-gaurav.vercel.app" target="_blank" rel="noopener noreferrer"
+                                    class="btn-cyan" style="padding:10px 20px;font-size:10px"><span class="mi"
+                                        style="font-size:15px">open_in_new</span>Live Demo</a>
+                                <a href="https://github.com/GAURAV-SHAARMA/Pulseboard" target="_blank"
+                                    rel="noopener noreferrer" class="btn-ghost"
+                                    style="padding:9px 20px;font-size:10px"><span class="mi"
+                                        style="font-size:15px">code</span>GitHub</a>
+                            </div>
+                        </div>
+                        <div
+                            style="background:rgba(0,0,0,.5);padding:28px;border-left:1px solid rgba(70,72,75,.2);display:flex;flex-direction:column;justify-content:center">
+                            <div style="display:flex;gap:6px;margin-bottom:18px"><span class="dot2"
+                                    style="background:rgba(255,113,108,.4)"></span><span class="dot2"
+                                    style="background:rgba(63,255,139,.4)"></span><span class="dot2"
+                                    style="background:rgba(161,250,255,.4)"></span><span
+                                    style="margin-left:8px;font-size:10px;color:rgba(170,171,175,.3);letter-spacing:.1em">dashboard.tsx</span>
+                            </div>
+                            <pre
+                                style="font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.85;color:rgba(170,171,175,.7);white-space:pre-wrap"><span style="color:#64b3ff">import</span> <span style="color:#f9f9fd">{ Analytics }</span> <span style="color:#64b3ff">from</span> <span style="color:#3fff8b">'@/components'</span>
+
+<span style="color:#64b3ff">export default function</span> <span style="color:#a1faff">Dashboard</span>() {
+  <span style="color:#64b3ff">const</span> metrics = <span style="color:#a1faff">useMetrics</span>()
+  <span style="color:#64b3ff">return</span> (
+    <span style="color:#f9f9fd">&lt;</span><span style="color:#3fff8b">Analytics</span>
+      <span style="color:#64b3ff">data</span>=<span style="color:#f9f9fd">{metrics}</span>
+      <span style="color:#64b3ff">realtime</span>=<span style="color:#3fff8b">{true}</span>
+    <span style="color:#f9f9fd">/&gt;</span>
+  )
+}</pre>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. RESTAURANT WEBAPP -->
+                <article class="card card-lift" style="padding:30px;display:flex;flex-direction:column;gap:16px">
+                    <div style="display:flex;align-items:center;justify-content:space-between">
+                        <span class="live-badge"><span class="live-dot"></span>Live on Vercel</span>
+                        <div class="ibox"
+                            style="background:rgba(255,113,108,.07);border:1px solid rgba(255,113,108,.18)"><span
+                                class="mi" style="color:#ff716c;font-size:20px">restaurant</span></div>
+                    </div>
+                    <div>
+                        <p
+                            style="font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#ff716c;margin-bottom:6px">
+                            React · Vite · Full UI</p>
+                        <h3
+                            style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.01em">
+                            RESTAURANT WEBAPP</h3>
+                    </div>
+                    <p style="font-size:12.5px;line-height:1.7;color:rgba(170,171,175,.7);flex:1">A modern restaurant
+                        web application built with React + Vite. Features menu browsing, smooth animations, responsive
+                        layout, and a polished UX — deployed live on Vercel.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="tag tag-b">React</span><span
+                            class="tag tag-r">Vite</span><span class="tag">JavaScript</span><span
+                            class="tag">CSS</span><span class="tag">Vercel</span></div>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
+                        <a href="https://restaurant-webapp-gaurav.vercel.app/" target="_blank" rel="noopener noreferrer"
+                            class="btn-cyan" style="padding:9px 18px;font-size:10px"><span class="mi"
+                                style="font-size:14px">open_in_new</span>Live Demo</a>
+                        <a href="https://github.com/GAURAV-SHAARMA/Restaurant-webapp" target="_blank"
+                            rel="noopener noreferrer" class="btn-ghost" style="padding:8px 18px;font-size:10px"><span
+                                class="mi" style="font-size:14px">code</span>GitHub</a>
+                    </div>
+                </article>
+
+                <!-- 3. SOCIAL SCHEDULER -->
+                <article class="card card-lift" style="padding:30px;display:flex;flex-direction:column;gap:16px">
+                    <div style="display:flex;align-items:center;justify-content:space-between">
+                        <span
+                            style="display:inline-flex;align-items:center;gap:5px;background:rgba(100,179,255,.06);border:1px solid rgba(100,179,255,.22);color:#64b3ff;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px"><span
+                                class="mi" style="font-size:12px">build</span>In Progress</span>
+                        <div class="ibox"
+                            style="background:rgba(100,179,255,.07);border:1px solid rgba(100,179,255,.18)"><span
+                                class="mi" style="color:#64b3ff;font-size:20px">schedule_send</span></div>
+                    </div>
+                    <div>
+                        <p
+                            style="font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#64b3ff;margin-bottom:6px">
+                            TypeScript · Next.js · SaaS Tool</p>
+                        <h3
+                            style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.01em">
+                            SOCIAL SCHEDULER</h3>
+                    </div>
+                    <p style="font-size:12.5px;line-height:1.7;color:rgba(170,171,175,.7);flex:1">A social media content
+                        scheduling tool built with TypeScript and Next.js. Allows users to plan, queue, and schedule
+                        posts across platforms with a clean, structured interface.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="tag tag-g">TypeScript</span><span
+                            class="tag tag-c">Next.js</span><span class="tag tag-b">React</span><span
+                            class="tag">CSS</span></div>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
+                        <a href="https://github.com/GAURAV-SHAARMA/Social-Schedular" target="_blank"
+                            rel="noopener noreferrer" class="btn-ghost" style="padding:8px 18px;font-size:10px"><span
+                                class="mi" style="font-size:14px">code</span>GitHub</a>
+                    </div>
+                </article>
+
+                <!-- 4. STUDENT MANAGEMENT SYSTEM — featured full width -->
+                <article class="card card-lift feat" style="grid-column:span 2">
+                    <div class="feat-inner"
+                        style="display:grid;grid-template-columns:1fr 1fr;min-height:260px;overflow:hidden;border-radius:14px">
+                        <div style="padding:34px 38px;display:flex;flex-direction:column;gap:16px">
+                            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                                <span
+                                    style="display:inline-flex;align-items:center;gap:5px;background:rgba(100,179,255,.06);border:1px solid rgba(100,179,255,.22);color:#64b3ff;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px">In
+                                    Progress</span>
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#3fff8b;margin-bottom:8px">
+                                    React 18 · Vite · Full CRUD System</p>
+                                <h3
+                                    style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(20px,2.5vw,30px);letter-spacing:-.02em">
+                                    STUDENT MANAGEMENT SYSTEM</h3>
+                            </div>
+                            <p style="font-size:13px;line-height:1.75;color:rgba(170,171,175,.75)">Production-grade
+                                student management platform with full auth (signup/login/protected routes), complete
+                                CRUD, CSV import/export, dual grid+table views, pagination, search & filter — all
+                                client-side in React + Vite.</p>
+                            <div style="display:flex;flex-wrap:wrap;gap:7px"><span class="tag tag-b">React
+                                    18</span><span class="tag tag-g">JavaScript</span><span class="tag">React Router
+                                    v6</span><span class="tag">Vite</span><span class="tag">CSS Variables</span><span
+                                    class="tag">LocalStorage</span></div>
+                            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
+                                <a href="https://github.com/GAURAV-SHAARMA/student-management-system" target="_blank"
+                                    rel="noopener noreferrer" class="btn-ghost"
+                                    style="padding:9px 20px;font-size:10px"><span class="mi"
+                                        style="font-size:15px">code</span>GitHub</a>
+                            </div>
+                        </div>
+                        <div
+                            style="background:rgba(0,0,0,.4);padding:30px;border-left:1px solid rgba(70,72,75,.2);display:flex;flex-direction:column;justify-content:center;gap:10px">
+                            <p
+                                style="font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(170,171,175,.32);margin-bottom:6px">
+                                Key Features</p>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+                                <div
+                                    style="display:flex;align-items:center;gap:8px;font-size:11.5px;color:rgba(170,171,175,.7)">
+                                    <span style="color:#3fff8b">✓</span>Auth & Protected Routes
+                                </div>
+                                <div
+                                    style="display:flex;align-items:center;gap:8px;font-size:11.5px;color:rgba(170,171,175,.7)">
+                                    <span style="color:#3fff8b">✓</span>Full CRUD Operations
+                                </div>
+                                <div
+                                    style="display:flex;align-items:center;gap:8px;font-size:11.5px;color:rgba(170,171,175,.7)">
+                                    <span style="color:#3fff8b">✓</span>CSV Import &amp; Export
+                                </div>
+                                <div
+                                    style="display:flex;align-items:center;gap:8px;font-size:11.5px;color:rgba(170,171,175,.7)">
+                                    <span style="color:#3fff8b">✓</span>Advanced Search &amp; Filter
+                                </div>
+                                <div
+                                    style="display:flex;align-items:center;gap:8px;font-size:11.5px;color:rgba(170,171,175,.7)">
+                                    <span style="color:#3fff8b">✓</span>Dashboard Analytics
+                                </div>
+                                <div
+                                    style="display:flex;align-items:center;gap:8px;font-size:11.5px;color:rgba(170,171,175,.7)">
+                                    <span style="color:#3fff8b">✓</span>Responsive Dark UI
+                                </div>
+                                <div
+                                    style="display:flex;align-items:center;gap:8px;font-size:11.5px;color:rgba(170,171,175,.7)">
+                                    <span style="color:#3fff8b">✓</span>Pagination
+                                </div>
+                                <div
+                                    style="display:flex;align-items:center;gap:8px;font-size:11.5px;color:rgba(170,171,175,.7)">
+                                    <span style="color:#3fff8b">✓</span>Photo Upload
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="divider" style="max-width:1200px;margin:0 auto;padding:0 28px"></div>
+
+    <!-- CONTACT -->
+    <section id="contact" style="padding:100px 0 80px">
+        <div style="max-width:1200px;margin:0 auto;padding:0 28px">
+            <div style="margin-bottom:56px"><span class="sec-label">Phase 03 — Connect</span>
+                <h2
+                    style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(32px,4vw,52px);letter-spacing:-.03em;line-height:.95">
+                    LET'S<br />CONNECT.</h2>
+            </div>
+            <div class="contact-g" style="display:grid;grid-template-columns:360px 1fr;gap:22px">
+
+                <div style="display:flex;flex-direction:column;gap:18px">
+                    <div class="card" style="padding:28px">
+                        <p style="font-size:13px;line-height:1.75;color:rgba(170,171,175,.75);margin-bottom:24px">Open
+                            to full-time SDE roles, FullStack engineering positions, internships, and collaborative
+                            projects. Remote and hybrid preferred.</p>
+                        <div style="display:flex;flex-direction:column;gap:16px">
+                            <a href="mailto:gauravsharma1913@gmail.com" target="_blank" rel="noopener noreferrer"
+                                style="display:flex;align-items:center;gap:14px;text-decoration:none"
+                                onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">
+                                <div class="ibox"
+                                    style="background:rgba(0,244,254,.07);border:1px solid rgba(0,244,254,.15)"><span
+                                        class="mi" style="color:#a1faff;font-size:18px">mail</span></div>
+                                <div>
+                                    <div
+                                        style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(170,171,175,.38);margin-bottom:2px">
+                                        Email</div>
+                                    <div style="font-size:13px;color:#f9f9fd">gauravsharma1913@gmail.com</div>
+                                </div>
+                            </a>
+                            <a href="tel:+919352906319" target="_blank" rel="noopener noreferrer"
+                                style="display:flex;align-items:center;gap:14px;text-decoration:none"
+                                onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">
+                                <div class="ibox"
+                                    style="background:rgba(63,255,139,.07);border:1px solid rgba(63,255,139,.15)"><span
+                                        class="mi" style="color:#3fff8b;font-size:18px">phone</span></div>
+                                <div>
+                                    <div
+                                        style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(170,171,175,.38);margin-bottom:2px">
+                                        Phone</div>
+                                    <div style="font-size:13px;color:#f9f9fd">+91 9352906319</div>
+                                </div>
+                            </a>
+                            <div style="display:flex;align-items:center;gap:14px">
+                                <div class="ibox"
+                                    style="background:rgba(100,179,255,.07);border:1px solid rgba(100,179,255,.15)">
+                                    <span class="mi" style="color:#64b3ff;font-size:18px">location_on</span>
+                                </div>
+                                <div>
+                                    <div
+                                        style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(170,171,175,.38);margin-bottom:2px">
+                                        Location</div>
+                                    <div style="font-size:13px;color:#f9f9fd">Chandigarh, India</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="soc-g" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+                        <a href="https://github.com/GAURAV-SHAARMA" target="_blank" rel="noopener noreferrer"
+                            class="soc-btn"
+                            style="border-radius:12px;border:1px solid rgba(70,72,75,.45);background:rgba(17,20,23,.7);padding:18px 8px"
+                            onmouseover="this.style.borderColor='rgba(161,250,255,.3)';this.style.background='rgba(0,244,254,.04)'"
+                            onmouseout="this.style.borderColor='rgba(70,72,75,.45)';this.style.background='rgba(17,20,23,.7)'"><span
+                                class="mi" style="color:#a1faff;font-size:22px">code</span><span
+                                style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(170,171,175,.5)">GitHub</span></a>
+                        <a href="https://www.linkedin.com/in/work-gaurav-sharma/" target="_blank"
+                            rel="noopener noreferrer" class="soc-btn"
+                            style="border-radius:12px;border:1px solid rgba(70,72,75,.45);background:rgba(17,20,23,.7);padding:18px 8px"
+                            onmouseover="this.style.borderColor='rgba(100,179,255,.3)';this.style.background='rgba(100,179,255,.04)'"
+                            onmouseout="this.style.borderColor='rgba(70,72,75,.45)';this.style.background='rgba(17,20,23,.7)'"><span
+                                class="mi" style="color:#64b3ff;font-size:22px">hub</span><span
+                                style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(170,171,175,.5)">LinkedIn</span></a>
+                        <a href="https://leetcode.com/u/GauravSharma1919/" target="_blank" rel="noopener noreferrer"
+                            class="soc-btn"
+                            style="border-radius:12px;border:1px solid rgba(70,72,75,.45);background:rgba(17,20,23,.7);padding:18px 8px"
+                            onmouseover="this.style.borderColor='rgba(63,255,139,.3)';this.style.background='rgba(63,255,139,.04)'"
+                            onmouseout="this.style.borderColor='rgba(70,72,75,.45)';this.style.background='rgba(17,20,23,.7)'"><span
+                                class="mi" style="color:#3fff8b;font-size:22px">terminal</span><span
+                                style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(170,171,175,.5)">LeetCode</span></a>
+                    </div>
+                </div>
+
+                <div class="card" style="padding:36px 40px;position:relative;overflow:hidden">
+                    <div
+                        style="position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:rgba(0,244,254,.04);border-radius:50%;filter:blur(70px);pointer-events:none">
+                    </div>
+                    <div
+                        style="position:absolute;bottom:-60px;left:-60px;width:220px;height:220px;background:rgba(63,255,139,.04);border-radius:50%;filter:blur(70px);pointer-events:none">
+                    </div>
+                    <div style="position:relative;z-index:1">
+                        <h3
+                            style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;margin-bottom:28px">
+                            Initialize Communication</h3>
+                        <div style="display:flex;flex-direction:column;gap:18px">
+                            <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                                <div style="display:flex;flex-direction:column;gap:7px"><label
+                                        style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(170,171,175,.42)">Full
+                                        Name</label><input id="cf-name" class="inp" type="text"
+                                        placeholder="Your name" /></div>
+                                <div style="display:flex;flex-direction:column;gap:7px"><label
+                                        style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(170,171,175,.42)">Email
+                                        Address</label><input id="cf-email" class="inp" type="email"
+                                        placeholder="your@email.com" /></div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;gap:7px"><label
+                                    style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(170,171,175,.42)">Subject</label><select
+                                    id="cf-subject" class="inp" style="cursor:pointer">
+                                    <option>General Inquiry</option>
+                                    <option>Recruitment Proposal</option>
+                                    <option>Technical Consultation</option>
+                                    <option>Project Collaboration</option>
+                                </select></div>
+                            <div style="display:flex;flex-direction:column;gap:7px"><label
+                                    style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(170,171,175,.42)">Message</label><textarea
+                                    id="cf-msg" class="inp" rows="5" placeholder="What's on your mind?"
+                                    style="resize:vertical"></textarea></div>
+                            <button onclick="sendMsg()" class="btn-cyan"
+                                style="justify-content:center;padding:14px;font-size:11px;border-radius:8px;width:100%;border:none">Transmit
+                                Message <span class="mi" style="font-size:17px">send</span></button>
+                            <div id="send-ok"
+                                style="display:none;text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3fff8b;padding:6px 0">
+                                ✓ Opening your email client...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="background:rgba(11,13,16,.95);border-top:1px solid rgba(70,72,75,.3);padding:40px 0">
+        <div
+            style="max-width:1200px;margin:0 auto;padding:0 28px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px">
+            <div>
+                <div
+                    style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:16px;letter-spacing:-.01em">
+                    GAURAV_SHARMA</div>
+                <div
+                    style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(170,171,175,.3);margin-top:4px">
+                    CSE Engineer · Chandigarh, India</div>
+            </div>
+            <div style="display:flex;gap:28px;flex-wrap:wrap">
+                <a href="https://github.com/GAURAV-SHAARMA" target="_blank" rel="noopener noreferrer"
+                    style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(170,171,175,.38);transition:color .2s"
+                    onmouseover="this.style.color='#a1faff'"
+                    onmouseout="this.style.color='rgba(170,171,175,.38)'">GitHub</a>
+                <a href="https://www.linkedin.com/in/work-gaurav-sharma/" target="_blank" rel="noopener noreferrer"
+                    style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(170,171,175,.38);transition:color .2s"
+                    onmouseover="this.style.color='#64b3ff'"
+                    onmouseout="this.style.color='rgba(170,171,175,.38)'">LinkedIn</a>
+                <a href="https://leetcode.com/u/GauravSharma1919/" target="_blank" rel="noopener noreferrer"
+                    style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(170,171,175,.38);transition:color .2s"
+                    onmouseover="this.style.color='#3fff8b'"
+                    onmouseout="this.style.color='rgba(170,171,175,.38)'">LeetCode</a>
+                <a href="mailto:gauravsharma1913@gmail.com"
+                    style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(170,171,175,.38);transition:color .2s"
+                    onmouseover="this.style.color='#a1faff'"
+                    onmouseout="this.style.color='rgba(170,171,175,.38)'">Email</a>
+            </div>
+            <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(170,171,175,.22)">© 2025
+                Gaurav Sharma</div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMob() {
+            const m = document.getElementById('mob-menu');
+            const ic = document.getElementById('ham-ic');
+            const open = m.classList.toggle('open');
+            ic.textContent = open ? 'close' : 'menu';
+        }
+        function closeMob() {
+            document.getElementById('mob-menu').classList.remove('open');
+            document.getElementById('ham-ic').textContent = 'menu';
+        }
+
+        // Navbar scroll tint
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
+        }, { passive: true });
+
+        // Active nav link highlighting via IntersectionObserver
+        const navLinks = document.querySelectorAll('.nav-link[data-sec]');
+        const sections = document.querySelectorAll('section[id]');
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    const match = document.querySelector(`.nav-link[data-sec="${e.target.id}"]`);
+                    if (match) match.classList.add('active');
+                }
+            });
+        }, { threshold: 0.3, rootMargin: '-64px 0px 0px 0px' });
+        sections.forEach(s => io.observe(s));
+
+        // Contact form → mailto
+        function sendMsg() {
+            const name = document.getElementById('cf-name').value.trim();
+            const email = document.getElementById('cf-email').value.trim();
+            const subject = document.getElementById('cf-subject').value;
+            const msg = document.getElementById('cf-msg').value.trim();
+            if (!name || !email || !msg) { alert('Please fill in Name, Email, and Message.'); return; }
+            const uri = 'mailto:gauravsharma1913@gmail.com'
+                + '?subject=' + encodeURIComponent(subject + ' — from ' + name)
+                + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + msg);
+            window.location.href = uri;
+            const ok = document.getElementById('send-ok');
+            ok.style.display = 'block';
+            setTimeout(() => ok.style.display = 'none', 4000);
+        }
+       function revealOnScroll() {
+    document.querySelectorAll('.reveal').forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+
+        if (elementTop < window.innerHeight - 50) { // triggers later = more visible
+            el.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+    </script>
+</body>
+
+</html>
